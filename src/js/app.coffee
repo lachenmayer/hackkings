@@ -1,2 +1,5 @@
 THREE = require './lib/threejs/build/three.js'
-console.log THREE
+$ = require './lib/jquery/dist/jquery.js'
+
+$ ->
+  console.log 'yeah'
