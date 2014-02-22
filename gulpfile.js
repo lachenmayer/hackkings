@@ -50,7 +50,14 @@ gulp.task('bower', function() {
 
 gulp.task('browserify', function() {
   return gulp.src('build/js/app.js')
-    .pipe(browserify())
+    .pipe(browserify({
+      shim: {
+        threejs: {
+          path: './build/js/lib/threejs/build/three.js',
+          exports: 'THREE'
+        }
+      }
+    }))
     .pipe(gulp.dest('bin/js/'))
     .pipe(livereload(server));
 });
