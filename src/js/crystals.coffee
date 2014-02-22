@@ -6,6 +6,7 @@ module.exports = class Crystals
       wireframe: true
       color: 0xffffff
     @meshes = ((@createMesh (x - @xAmount / 2), (y - @yAmount / 2) for x in [0...@xAmount]) for y in [0...@yAmount])
+    @wavelength = 4000
 
   mesh: (x, y) ->
     @meshes[y][x]
@@ -22,9 +23,9 @@ module.exports = class Crystals
         scene.add mesh
 
   bob: (time) ->
-    frequency = 2 * Math.PI / 4000
-    amplitude = 10
+    @frequency = 2 * Math.PI / @wavelength
+    amplitude = 50
     for y in [0...@yAmount]
       for x in [0...@xAmount]
-        offset = x / frequency + Math.sin(y / frequency)
-        @mesh(x, y).position.y = amplitude * Math.sin(time * frequency + offset)
+        offset = x / @frequency + Math.sin(y / @frequency)
+        @mesh(x, y).position.y = amplitude * Math.sin(time * @frequency + offset)

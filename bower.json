@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.0",
-    "threejs": "*"
+    "threejs": "*",
+    "socket.io": "~0.9.15"
   }
 }

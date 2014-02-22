@@ -12,6 +12,7 @@ near = 0.1
 far = 10000
 
 $ ->
+
   container = $ '.container'
 
   renderer = new THREE.WebGLRenderer()
@@ -38,6 +39,13 @@ $ ->
   controls = new THREE.PointerLockControls camera
   scene.add controls.getObject()
   controls.enabled = true
+
+  socket = io.connect 'http://localhost'
+  socket.on 'brainwavez', (data) ->
+    if data.eSense?
+      {eSense} = data
+      console.log eSense
+      crystals.wavelength = eSense.attention * 1000
 
   tick = 0
   startTime = time = Date.now()

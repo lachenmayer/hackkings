@@ -83,4 +83,4 @@ gulp.task('watch', function () {
 gulp.task('buildjs', ['js','bower','browserify'])
 
 // Default Task
-gulp.task('default', ['jslibs','buildjs','css','templates','express','watch']);
+gulp.task('default', ['jslibs','buildjs','css','templates','watch']);
