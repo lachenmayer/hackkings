@@ -1,5 +1,8 @@
 THREE = require './lib/threejs/build/three.js'
+THREE.PointerLockControls = require './lib/PointerLockControls.js'
 $ = require './lib/jquery/dist/jquery.js'
+
+Crystals = require './crystals'
 
 screenSize = [window.innerWidth, window.innerHeight]
 
@@ -18,13 +21,11 @@ $ ->
   scene = new THREE.Scene()
   scene.add camera
 
-  camera.position.z = 300
+  camera.position.z = 2000
+  camera.position.y = 200
 
-  material = new THREE.MeshLambertMaterial
-    color: 0xcc0000
-  sphere = new THREE.Mesh new THREE.SphereGeometry(50, 16, 16), material
-
-  scene.add sphere
+  crystals = new Crystals 11, 11, 30, 220
+  crystals.addToScene scene
 
   light = new THREE.PointLight 0xffffff
 
@@ -34,6 +35,19 @@ $ ->
 
   scene.add light
 
-  renderer.render scene, camera
+  controls = new THREE.PointerLockControls camera
+  scene.add controls.getObject()
+  controls.enabled = true
+
+  tick = 0
+  startTime = time = Date.now()
+  render = ->
+    controls.update Date.now() - time
+    crystals.bob time - startTime
+    renderer.render scene, camera
+    time = Date.now()
+    window.requestAnimationFrame render
+  window.requestAnimationFrame render
 
   container.append(renderer.domElement)
+

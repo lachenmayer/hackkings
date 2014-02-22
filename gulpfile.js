@@ -44,6 +44,10 @@ gulp.task('express', function() {
   gutil.log('Listening on port: 1337');
 });
 
+gulp.task('jslibs', function() {
+  return gulp.src('src/js/lib/*.js').pipe(gulp.dest('build/js/lib'));
+});
+
 gulp.task('bower', function() {
   bower().pipe(gulp.dest('./build/js/lib'))
 });
@@ -55,6 +59,11 @@ gulp.task('browserify', function() {
         threejs: {
           path: './build/js/lib/threejs/build/three.js',
           exports: 'THREE'
+        },
+        PointerLockControls: {
+          path: './build/js/lib/PointerLockControls.js',
+          exports: 'THREE.PointerLockControls',
+          depends: {threejs: 'THREE'}
         }
       }
     }))
@@ -74,4 +83,4 @@ gulp.task('watch', function () {
 gulp.task('buildjs', ['js','bower','browserify'])
 
 // Default Task
-gulp.task('default', ['buildjs','css','templates','express','watch']);
+gulp.task('default', ['jslibs','buildjs','css','templates','express','watch']);
