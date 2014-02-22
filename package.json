@@ -4,5 +4,21 @@
   "author": "",
   "description": "",
   "dependencies": {},
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-concat": "~2.1.7",
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.2",
+    "gulp-uglify": "~0.2.1",
+    "gulp-stylus": "0.0.13",
+    "gulp-jade": "~0.4.2",
+    "gulp-livereload": "~1.1.1",
+    "tiny-lr": "0.0.5",
+    "express": "~3.4.8",
+    "marked": "~0.3.0",
+    "connect-livereload": "~0.3.2",
+    "gulp-coffee": "~1.4.1",
+    "gulp-bower": "0.0.2",
+    "gulp-browserify": "~0.4.6"
+  }
 }

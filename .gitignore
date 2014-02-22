@@ -28,6 +28,8 @@ what
 # Output folder
 /build
 /dist
+/bin
+/bower_components
 /.mimosa/require/tracking.json
 
 # Numerous always-ignore extensions
